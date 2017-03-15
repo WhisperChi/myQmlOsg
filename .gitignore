@@ -1,0 +1,9 @@
+
+## file ##
+*.o
+moc_*.o
+*.swp
+
+## dir ##
+myQmlOsg.app/
+
