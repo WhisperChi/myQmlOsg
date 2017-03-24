@@ -4,6 +4,7 @@
 moc_*.o
 *.swp
 *.user
+Makefile
 
 ## dir ##
 myQmlOsg.app/
