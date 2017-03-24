@@ -3,6 +3,7 @@
 *.o
 moc_*.o
 *.swp
+*.user
 
 ## dir ##
 myQmlOsg.app/
