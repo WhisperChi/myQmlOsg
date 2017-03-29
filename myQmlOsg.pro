@@ -37,12 +37,29 @@ HEADERS += \
 INCLUDEPATH += /usr/local/include
 
 LIBS += \
-    -L/usr/local/lib -losg \
-    -L/usr/local/lib -losgGA \
-    -L/usr/local/lib -losgViewer \
-    -L/usr/local/lib -lOpenThreads \
-    -L/usr/local/lib -losgText \
-    -L/usr/local/lib -losgDB
+        -L/usr/local/lib -lOpenThreads\
+        -L/usr/local/lib -losgAnimation\
+        -L/usr/local/lib -losgDB\
+        -L/usr/local/lib -losgEarthAnnotation \
+        -L/usr/local/lib -losgEarthFeatures \
+        -L/usr/local/lib -losgEarth \
+        -L/usr/local/lib -losgEarthSymbology \
+        -L/usr/local/lib -losgEarthUtil \
+        -L/usr/local/lib -losgFX \
+        -L/usr/local/lib -losgGA \
+        -L/usr/local/lib -losgManipulator \
+        -L/usr/local/lib -losgParticle \
+        -L/usr/local/lib -losgPresentation \
+        -L/usr/local/lib -losgShadow \
+        -L/usr/local/lib -losgSim \
+        -L/usr/local/lib -losg \
+        -L/usr/local/lib -losgTerrain \
+        -L/usr/local/lib -losgText \
+        -L/usr/local/lib -losgUtil \
+        -L/usr/local/lib -losgViewer \
+        -L/usr/local/lib -losgVolume \
+        -L/usr/local/lib -losgWidget
+
 
 DISTFILES += \
     main.qml

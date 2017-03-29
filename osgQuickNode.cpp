@@ -13,6 +13,7 @@
 #include <osg/Texture2D>
 #include <osg/ShapeDrawable>
 #include <osg/PolygonMode>
+#include <osg/Group>
 #include <osgGA/OrbitManipulator>
 #include <osgViewer/ViewerEventHandlers>
 #include <osg/NodeCallback>
@@ -241,7 +242,7 @@ void OsgQuickNode::init()
     // create a sample scene
     osg::Group* sceneRoot = new osg::Group;
 
-    sceneRoot->addChild(createScene());
+    //sceneRoot->addChild(createScene());
     _osgViewer->setSceneData(sceneRoot);
 #endif
 
@@ -300,7 +301,7 @@ osg::Node* OsgQuickNode::createScene()
 
     _pat = new osg::PositionAttitudeTransform;
     _pat->setPosition(osg::Vec3(30, 0, 10));
-    _pat->addChild(geode);
+    //_pat->addChild(geode);
 
     _pat->addUpdateCallback(new RotateLocalSceneCallback(_pat));
 

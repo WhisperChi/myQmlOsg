@@ -8,7 +8,7 @@ ApplicationWindow {
     visible: true
     width: 640
     height: 480
-    title: qsTr("Hello World")
+    title: qsTr("myQmlOsg")
 
     GlobeOsg {
         id: globe1
@@ -36,109 +36,4 @@ ApplicationWindow {
 
 
     }
-
-    Rectangle {
-        id: zoomInButton
-        color:"#8000FFFF"
-        width: 150; height: 75
-
-        Text{
-            id: zoomInLabel
-            anchors.centerIn: parent
-            text: "zoom in"
-        }
-
-        MouseArea {
-            anchors.fill: parent
-
-            onClicked: {
-                globe1.zoom = 0.9*globe1.zoom;
-
-                if(zoomInButton.width  == 200)
-                    zoomInButton.width = 150;
-                else
-                    zoomInButton.width = 200;
-            }
-        }
-    }
-
-    Rectangle {
-        id: zoomOutButton
-        color: "#80FFFF00"
-        width: 150; height: 75
-        anchors {
-            top: parent.top
-            right: parent.right
-        }
-
-        Text{
-            id: zoomOutLabel
-            anchors.centerIn: parent
-            text: "zoom out"
-        }
-
-        MouseArea {
-            anchors.fill: parent
-            onClicked: globe1.zoom = 1.1*globe1.zoom;
-        }
-    }
-
-
-    Rectangle {
-        id: homeButton
-        color: "yellow"
-        width: 150; height: 75
-        anchors {
-            bottom: parent.bottom
-            left: parent.left
-        }
-
-        Text{
-            id: homeLabel
-            anchors.centerIn: parent
-            text: "home"
-        }
-
-        MouseArea {
-            anchors.fill: parent
-            onClicked: globe1.home();
-        }
-    }
-
-
-    Rectangle {
-        id: animateButton
-        color: "green"
-        width: 150; height: 75
-        anchors {
-            bottom: parent.bottom
-            right: parent.right
-        }
-
-        Text{
-            id: animateLabel
-            anchors.centerIn: parent
-            text: "animate"
-        }
-
-
-        MouseArea {
-            anchors.fill: parent
-            onClicked: {
-                var currAnim = globe1.animate;
-                if(currAnim)
-                {
-                    globe1.animate = false;
-                    animateLabel.text = "animate";
-                }
-                else
-                {
-                    globe1.animate = true;
-                    animateLabel.text = "stop animation";
-                }
-            }
-        }
-    }
-
-
 }

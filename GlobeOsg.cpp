@@ -15,13 +15,21 @@
 #include <osg/PolygonMode>
 #include <osgViewer/ViewerEventHandlers>
 #include <osg/Shape>
+#include <osgDB/ReaderWriter>
+#include <osgDB/ReadFile>
+#include <osgViewer/Viewer>
 
-
+//osg earth
+#include <osgEarthDrivers/gdal/GDALOptions>
+#include <osgEarth/Map>
+#include <osgEarth/MapNode>
+#include <osgEarthUtil/EarthManipulator>
+#include <osgEarthDrivers/gdal/GDALOptions>
+#include <osgEarth/ImageLayer>
 
 // stl
 #include <math.h>
 #include <iostream>
-
 
 
 
@@ -205,7 +213,32 @@ void GlobeOsg::setupScene()
         _osgQuickNode->getViewer()->setSceneData(sceneRoot);
     }
 
-    sceneRoot->addChild(_pat.get());
+    //sceneRoot->addChild(_pat.get());
+
+    //Add cow.osg
+    if( 1 )
+    {
+        //sceneRoot->addChild(osgDB::readNodeFile("/Users/whisperchi/recent/Qt/myQmlOsg/data/cow.osg"));
+        osgEarth::Map* map = new osgEarth::Map;
+        osgEarth::MapNode* mapNode = new osgEarth::MapNode;
+
+        osgEarth::Drivers::GDALOptions gdal;
+        gdal.url() = "world.tif";
+        osgEarth::ImageLayer* base = new osgEarth::ImageLayer("base",gdal);
+        mapNode->getMap()->addImageLayer(base);
+        //printf("Hello\n");
+        sceneRoot->addChild(mapNode);
+    }
+
+    //gdal_tiff.earth
+    if( 0 )
+    {
+        _osgQuickNode->getViewer()->setSceneData(osgDB::readNodeFile("/Users/whisperchi/recent/Qt/myQmlOsg/data/gdal_tiff.earth"));
+        //osg::ref_ptr<osgEarth::Map> 	map 	= new osgEarth::Map;
+        //osg::ref_ptr<osgEarth::MapNode> mapNode = new osgEarth::MapNode(map);
+        //sceneRoot->addChild(mapNode);
+    }
+
 
     // setup a nice default FOV
     osg::Camera* pCamera = _osgQuickNode->getViewer()->getCamera();
