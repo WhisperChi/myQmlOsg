@@ -20,6 +20,8 @@
 #include <osgDB/ReaderWriter>
 #include <osgDB/ReadFile>
 
+#include <osgEarth/MapNode>
+
 // stl
 #include <iostream>
 
@@ -234,6 +236,7 @@ void OsgQuickNode::init()
                     0, 0, false,
                     _samples, _samples);
 
+    osg::ref_ptr<osgEarth::MapNode> mapNode = new osgEarth::MapNode;
     // save a reference to the texture object bound to the fbo
     _fboTex = texture2D;
 
@@ -241,6 +244,8 @@ void OsgQuickNode::init()
 #if 1
     // create a sample scene
     osg::Group* sceneRoot = new osg::Group;
+
+    sceneRoot->addChild(mapNode);
 
     //sceneRoot->addChild(createScene());
     _osgViewer->setSceneData(sceneRoot);

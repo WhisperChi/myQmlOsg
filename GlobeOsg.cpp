@@ -220,14 +220,14 @@ void GlobeOsg::setupScene()
     {
         //sceneRoot->addChild(osgDB::readNodeFile("/Users/whisperchi/recent/Qt/myQmlOsg/data/cow.osg"));
         osgEarth::Map* map = new osgEarth::Map;
-        osgEarth::MapNode* mapNode = new osgEarth::MapNode;
+        //osgEarth::MapNode* mapNode = new osgEarth::MapNode;
 
-        osgEarth::Drivers::GDALOptions gdal;
-        gdal.url() = "world.tif";
-        osgEarth::ImageLayer* base = new osgEarth::ImageLayer("base",gdal);
-        mapNode->getMap()->addImageLayer(base);
+        //osgEarth::Drivers::GDALOptions gdal;
+        //gdal.url() = "world.tif";
+        //osgEarth::ImageLayer* base = new osgEarth::ImageLayer("base",gdal);
+        //mapNode->getMap()->addImageLayer(base);
         //printf("Hello\n");
-        sceneRoot->addChild(mapNode);
+        //sceneRoot->addChild(mapNode);
     }
 
     //gdal_tiff.earth
