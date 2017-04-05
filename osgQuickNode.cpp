@@ -20,7 +20,10 @@
 #include <osgDB/ReaderWriter>
 #include <osgDB/ReadFile>
 
+// osgEarth
 #include <osgEarth/MapNode>
+#include <osgEarth/ImageLayer>
+#include <osgEarthDrivers/gdal/GDALOptions>
 
 // stl
 #include <iostream>
@@ -236,7 +239,6 @@ void OsgQuickNode::init()
                     0, 0, false,
                     _samples, _samples);
 
-    osg::ref_ptr<osgEarth::MapNode> mapNode = new osgEarth::MapNode;
     // save a reference to the texture object bound to the fbo
     _fboTex = texture2D;
 
@@ -245,6 +247,11 @@ void OsgQuickNode::init()
     // create a sample scene
     osg::Group* sceneRoot = new osg::Group;
 
+    osg::ref_ptr<osgEarth::MapNode> mapNode = new osgEarth::MapNode;
+    osgEarth::Drivers::GDALOptions gdal;
+    gdal.url() = "world.tif";
+    osgEarth::ImageLayer* base = new osgEarth::ImageLayer("base",gdal);
+    mapNode->getMap()->addImageLayer(base);
     sceneRoot->addChild(mapNode);
 
     //sceneRoot->addChild(createScene());
