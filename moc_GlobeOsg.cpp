@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_GlobeOsg_t {
-    QByteArrayData data[9];
-    char stringdata0[65];
+    QByteArrayData data[10];
+    char stringdata0[76];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -32,16 +32,17 @@ static const qt_meta_stringdata_GlobeOsg_t qt_meta_stringdata_GlobeOsg = {
 QT_MOC_LITERAL(0, 0, 8), // "GlobeOsg"
 QT_MOC_LITERAL(1, 9, 4), // "home"
 QT_MOC_LITERAL(2, 14, 0), // ""
-QT_MOC_LITERAL(3, 15, 16), // "_mousePressEvent"
-QT_MOC_LITERAL(4, 32, 1), // "x"
-QT_MOC_LITERAL(5, 34, 1), // "y"
-QT_MOC_LITERAL(6, 36, 15), // "_mouseDragEvent"
-QT_MOC_LITERAL(7, 52, 4), // "zoom"
-QT_MOC_LITERAL(8, 57, 7) // "animate"
+QT_MOC_LITERAL(3, 15, 10), // "invisiable"
+QT_MOC_LITERAL(4, 26, 16), // "_mousePressEvent"
+QT_MOC_LITERAL(5, 43, 1), // "x"
+QT_MOC_LITERAL(6, 45, 1), // "y"
+QT_MOC_LITERAL(7, 47, 15), // "_mouseDragEvent"
+QT_MOC_LITERAL(8, 63, 4), // "zoom"
+QT_MOC_LITERAL(9, 68, 7) // "animate"
 
     },
-    "GlobeOsg\0home\0\0_mousePressEvent\0x\0y\0"
-    "_mouseDragEvent\0zoom\0animate"
+    "GlobeOsg\0home\0\0invisiable\0_mousePressEvent\0"
+    "x\0y\0_mouseDragEvent\0zoom\0animate"
 };
 #undef QT_MOC_LITERAL
 
@@ -51,26 +52,28 @@ static const uint qt_meta_data_GlobeOsg[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-       3,   14, // methods
-       2,   40, // properties
+       4,   14, // methods
+       2,   46, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
        0,       // signalCount
 
  // methods: name, argc, parameters, tag, flags
-       1,    0,   29,    2, 0x02 /* Public */,
-       3,    2,   30,    2, 0x01 /* Protected */,
-       6,    2,   35,    2, 0x01 /* Protected */,
+       1,    0,   34,    2, 0x02 /* Public */,
+       3,    0,   35,    2, 0x02 /* Public */,
+       4,    2,   36,    2, 0x01 /* Protected */,
+       7,    2,   41,    2, 0x01 /* Protected */,
 
  // methods: parameters
     QMetaType::Void,
-    QMetaType::Void, QMetaType::Int, QMetaType::Int,    4,    5,
-    QMetaType::Void, QMetaType::Int, QMetaType::Int,    4,    5,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::Int, QMetaType::Int,    5,    6,
+    QMetaType::Void, QMetaType::Int, QMetaType::Int,    5,    6,
 
  // properties: name, type, flags
-       7, QMetaType::QReal, 0x00095103,
-       8, QMetaType::Bool, 0x00095103,
+       8, QMetaType::QReal, 0x00095103,
+       9, QMetaType::Bool, 0x00095103,
 
        0        // eod
 };
@@ -82,8 +85,9 @@ void GlobeOsg::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, vo
         Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->home(); break;
-        case 1: _t->_mousePressEvent((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
-        case 2: _t->_mouseDragEvent((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
+        case 1: _t->invisiable(); break;
+        case 2: _t->_mousePressEvent((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
+        case 3: _t->_mouseDragEvent((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
         default: ;
         }
     }
@@ -136,13 +140,13 @@ int GlobeOsg::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 3)
+        if (_id < 4)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 3;
+        _id -= 4;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 3)
+        if (_id < 4)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 3;
+        _id -= 4;
     }
 #ifndef QT_NO_PROPERTIES
    else if (_c == QMetaObject::ReadProperty || _c == QMetaObject::WriteProperty

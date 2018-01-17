@@ -1,0 +1,10 @@
+#! /bin/bash
+
+libs=`cat bbb`
+
+for one in ${libs}
+do
+	echo \"$one\"
+	install_name_tool -change "$one" "/usr/local/lib/$one" myQmlOsg.app/Contents/MacOS/myQmlOsg
+done
+

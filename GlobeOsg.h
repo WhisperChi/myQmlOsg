@@ -40,6 +40,7 @@ public:
     // sample qml invokable method
     Q_INVOKABLE void home();
 
+    Q_INVOKABLE void invisiable();
 
 
 protected:

@@ -34,6 +34,8 @@ public:
 
     // return osg viewer, mainly for setting scene, camera manipulator, etc...
     osgViewer::Viewer* getViewer(){ return _osgViewer.get();}
+    
+    void invisiable();
 
 protected:
 

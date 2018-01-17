@@ -109,6 +109,11 @@ void OsgQuickNode::preprocess()
     renderOsgFrame();
 }
 
+void OsgQuickNode::invisiable()
+{
+    this->getViewer()->getSceneData()->setNodeMask(0);
+}
+
 void OsgQuickNode::setQuickWindow(QQuickWindow *window)
 {
     _quickWindow = window;
@@ -153,6 +158,7 @@ void OsgQuickNode::renderOsgFrame()
                                                 QRectF(0, 0, _quickWindow->width(), _quickWindow->height()),
                                                 // invert uv not to get an y flipped result
                                                 QRectF(0, 1, 1, -1)); // normally this would be 0, 0, 1, 1
+                                                //QRectF(0, 0, 1, 1)); // normally this would be 0, 0, 1, 1
 
         _qTexture = _quickWindow->createTextureFromId(getGLtexId(), _quickWindow->size());
 
@@ -225,7 +231,8 @@ void OsgQuickNode::init()
     pCamera->setRenderTargetImplementation(osg::Camera::FRAME_BUFFER_OBJECT);
 
     // set a grey background color
-    pCamera->setClearColor(osg::Vec4(0.7, 0.7, 0.7, 1.0));
+    //pCamera->setClearColor(osg::Vec4(0.7, 0.7, 0.7, 1.0));
+    pCamera->setClearColor(osg::Vec4(0.5, 0.5, 0.5, 1.0));
 
     // attach a texture
     osg::Texture2D* texture2D = new osg::Texture2D;
@@ -272,7 +279,6 @@ GLuint OsgQuickNode::getGLtexId()
 
 }
 
-
 osg::Node* OsgQuickNode::createScene()
 {
     // setup a sphere to render
@@ -286,6 +292,7 @@ osg::Node* OsgQuickNode::createScene()
 
     osg::Shader* pvert = new osg::Shader(osg::Shader::VERTEX);
     // read vertex shader from resources
+    if(0)
     {
         QFile file(":/shaders/globe.vert");
         file.open(QIODevice::ReadOnly | QIODevice::Text);
@@ -297,6 +304,7 @@ osg::Node* OsgQuickNode::createScene()
 
     osg::Shader* pFrag = new osg::Shader(osg::Shader::FRAGMENT);
     // read frag shader from resources
+    if(0)
     {
         QFile file(":/shaders/globe.frag");
         file.open(QIODevice::ReadOnly | QIODevice::Text);

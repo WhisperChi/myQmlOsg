@@ -158,97 +158,17 @@ QSGNode* GlobeOsg::updatePaintNode(QSGNode* qNode, UpdatePaintNodeData* qNodeDat
 void GlobeOsg::home()
 {
     // reset to home
+    std::cout << "func home was called\n";
     _osgQuickNode->getViewer()->home();
+}
+
+void GlobeOsg::invisiable()
+{
+    _osgQuickNode->invisiable();
 }
 
 void GlobeOsg::setupScene()
 {
-    // setup a sphere to render
-    osg::ShapeDrawable* pSD = new osg::ShapeDrawable(new osg::Box(osg::Vec3(0, 0, 0), 10));
-    pSD->setColor(osg::Vec4(1, 0, 1, 0.5));
-    osg::Geode* geode = new osg::Geode;
-    geode->addDrawable(pSD);
-
-    osg::StateSet* ss = geode->getOrCreateStateSet();
-    ss->setMode(GL_CULL_FACE, osg::StateAttribute::ON);
-    //geode->getOrCreateStateSet()->setAttributeAndModes(new osg::PolygonMode(osg::PolygonMode::FRONT_AND_BACK, osg::PolygonMode::LINE));
-    //geode->getOrCreateStateSet()->setMode(GL_BLEND, osg::StateAttribute::ON);
-
-    osg::Shader* pvert = new osg::Shader(osg::Shader::VERTEX);
-    // read vertex shader from resources
-    {
-        QFile file(":/shaders/globe.vert");
-        file.open(QIODevice::ReadOnly | QIODevice::Text);
-
-        QTextStream in(&file);
-        QString line = in.readAll();
-        pvert->setShaderSource(line.toStdString());
-    }
-
-    osg::Shader* pFrag = new osg::Shader(osg::Shader::FRAGMENT);
-    // read frag shader from resources
-    {
-        QFile file(":/shaders/globe.frag");
-        file.open(QIODevice::ReadOnly | QIODevice::Text);
-
-        QTextStream in(&file);
-        QString line = in.readAll();
-        pFrag->setShaderSource(line.toStdString());
-    }
-
-    osg::Program* pProg = new osg::Program;
-    pProg->addShader(pvert);
-    pProg->addShader(pFrag);
-    geode->getOrCreateStateSet()->setAttributeAndModes(pProg);
-
-
-    _pat = new osg::PositionAttitudeTransform;
-    _pat->addChild(geode);
-
-    osg::Group* sceneRoot = dynamic_cast<osg::Group*>(_osgQuickNode->getViewer()->getSceneData());
-    if(sceneRoot == NULL)
-    {
-        std::cout << "Creating NEW scene home" << std::endl;
-        sceneRoot = new osg::Group;
-        _osgQuickNode->getViewer()->setSceneData(sceneRoot);
-    }
-
-    //sceneRoot->addChild(_pat.get());
-
-    //Add cow.osg
-    if( 1 )
-    {
-        //sceneRoot->addChild(osgDB::readNodeFile("/Users/whisperchi/recent/Qt/myQmlOsg/data/cow.osg"));
-        osgEarth::Map* map = new osgEarth::Map;
-        //osgEarth::MapNode* mapNode = new osgEarth::MapNode;
-
-        //osgEarth::Drivers::GDALOptions gdal;
-        //gdal.url() = "world.tif";
-        //osgEarth::ImageLayer* base = new osgEarth::ImageLayer("base",gdal);
-        //mapNode->getMap()->addImageLayer(base);
-        //printf("Hello\n");
-        //sceneRoot->addChild(mapNode);
-    }
-
-    //gdal_tiff.earth
-    if( 0 )
-    {
-        _osgQuickNode->getViewer()->setSceneData(osgDB::readNodeFile("/Users/whisperchi/recent/Qt/myQmlOsg/data/gdal_tiff.earth"));
-        //osg::ref_ptr<osgEarth::Map> 	map 	= new osgEarth::Map;
-        //osg::ref_ptr<osgEarth::MapNode> mapNode = new osgEarth::MapNode(map);
-        //sceneRoot->addChild(mapNode);
-    }
-
-
-    // setup a nice default FOV
-    osg::Camera* pCamera = _osgQuickNode->getViewer()->getCamera();
-    double fov, ar, zMin, zMax;
-    pCamera->getProjectionMatrixAsPerspective(fov, ar, zMin, zMax);
-    fov = 65.0f / ar;
-    pCamera->setProjectionMatrixAsPerspective(fov, ar, zMin, zMax);
-
-    //pCamera->setPostDrawCallback(new PostDrawDebug() );
-
     // also add an orbit manipulator
     _orbit = new osgGA::OrbitManipulator;
     _osgQuickNode->getViewer()->setCameraManipulator(_orbit.get());

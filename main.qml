@@ -27,6 +27,8 @@ ApplicationWindow {
 
             onPressed: {
                 globe1._mousePressEvent(mouse.x, mouse.y);
+                globe1.home()
+                globe1.invisiable()
             }
 
             onPositionChanged: {
